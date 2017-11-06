@@ -56,7 +56,7 @@ class TestIrohad : public Application {
     grpc::ServerBuilder builder;
     int port = 0;
     builder.AddListeningPort(
-        torii_.listenAddress(), grpc::InsecureServerCredentials(), &port);
+        peer_.listenAddress(), grpc::InsecureServerCredentials(), &port);
 
     builder.RegisterService(ordering_init.ordering_gate_transport.get());
     builder.RegisterService(ordering_init.ordering_service_transport.get());

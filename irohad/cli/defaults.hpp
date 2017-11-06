@@ -32,7 +32,7 @@ namespace defaults {
   constexpr auto postgresPort = 6379;
 
   constexpr auto peerHost = LOCALHOST;
-  constexpr auto peerPort = 10001;
+  constexpr auto peerPort = 11111;
 
   constexpr auto redisHost = LOCALHOST;
   constexpr auto redisPort = 5432;

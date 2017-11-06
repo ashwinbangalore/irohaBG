@@ -28,12 +28,12 @@
 
 using std::literals::string_literals::operator""s;
 
-#define PORT_MIN 1
-#define PORT_MAX 65535
-#define DELAY_MIN 1
-#define DELAY_MAX 100000
-#define SIZE_MIN 1
-#define SIZE_MAX 100000
+#define IROHA_PORT_MIN 1
+#define IROHA_PORT_MAX 65535
+#define IROHA_DELAY_MIN 1
+#define IROHA_DELAY_MAX 100000
+#define IROHA_SIZE_MIN 1
+#define IROHA_SIZE_MAX 100000
 
 inline void addPeerFlags(CLI::App *p,
                          iroha::config::Peer *peer,
@@ -58,7 +58,7 @@ inline void addPeerFlags(CLI::App *p,
                 "Client API (torii) listen port"s,
                 true)
       ->envname(IROHA_TORII_PORT)
-      ->check(CLI::Range(PORT_MIN, PORT_MAX))
+      ->check(CLI::Range(IROHA_PORT_MIN, IROHA_PORT_MAX))
       ->group("Peer"s);
 
   p->add_option("--host"s, peer->host, "Peer's listen address"s, true)
@@ -68,7 +68,7 @@ inline void addPeerFlags(CLI::App *p,
 
   p->add_option("--port"s, peer->port, "Peer's listen port"s, true)
       ->envname(IROHA_TORII_PORT)
-      ->check(CLI::Range(PORT_MIN, PORT_MAX))
+      ->check(CLI::Range(IROHA_PORT_MIN, IROHA_PORT_MAX))
       ->group("Peer"s);
 
   p->add_option(
@@ -98,7 +98,7 @@ inline void addPostgresFlags(CLI::App *p,
 
   p->add_option("--pgport"s, postgres->port, "PostgreSQL database port."s, true)
       ->envname(IROHA_PGPORT)
-      ->check(CLI::Range(PORT_MIN, PORT_MAX))
+      ->check(CLI::Range(IROHA_PORT_MIN, IROHA_PORT_MAX))
       ->group("PostgreSQL"s);
 
   p->add_option(
@@ -128,7 +128,7 @@ inline void addRedisFlags(CLI::App *p, iroha::ametsuchi::config::Redis *redis) {
 
   p->add_option("--rdport"s, redis->port, "Redis database port"s, true)
       ->envname(IROHA_RDPORT)
-      ->check(CLI::Range(PORT_MIN, PORT_MAX))
+      ->check(CLI::Range(IROHA_PORT_MIN, IROHA_PORT_MAX))
       ->group("Redis"s);
 }
 
@@ -168,7 +168,7 @@ inline void addOtherOptionsFlags(CLI::App *p,
        "Waiting time before loading committed block from next, milliseconds"s,
        true)
       ->group("Other")
-      ->check(CLI::Range(DELAY_MIN, DELAY_MAX))
+      ->check(CLI::Range(IROHA_DELAY_MIN, IROHA_DELAY_MAX))
       ->envname(IROHA_OTHER_LOADDELAY);
   options->load_delay = std::chrono::milliseconds(load_d);
 
@@ -177,7 +177,7 @@ inline void addOtherOptionsFlags(CLI::App *p,
                 "Waiting time before sending vote to next peer, milliseconds"s,
                 true)
       ->group("Other")
-      ->check(CLI::Range(DELAY_MIN, DELAY_MAX))
+      ->check(CLI::Range(IROHA_DELAY_MIN, IROHA_DELAY_MAX))
       ->envname(IROHA_OTHER_VOTEDELAY);
   options->vote_delay = std::chrono::milliseconds(vote_d);
 
@@ -186,7 +186,7 @@ inline void addOtherOptionsFlags(CLI::App *p,
                 "maximum waiting time util emitting new proposal"s,
                 true)
       ->group("Other")
-      ->check(CLI::Range(DELAY_MIN, DELAY_MAX))
+      ->check(CLI::Range(IROHA_DELAY_MIN, IROHA_DELAY_MAX))
       ->envname(IROHA_OTHER_PROPOSALDELAY);
   options->proposal_delay = std::chrono::milliseconds(proposal_d);
 
@@ -195,7 +195,7 @@ inline void addOtherOptionsFlags(CLI::App *p,
                 "Maximum transactions in one proposal"s,
                 true)
       ->group("Other")
-      ->check(CLI::Range(SIZE_MIN, SIZE_MAX))
+      ->check(CLI::Range(IROHA_SIZE_MIN, IROHA_SIZE_MAX))
       ->envname(IROHA_OTHER_PROPOSALSIZE);
 }
 
